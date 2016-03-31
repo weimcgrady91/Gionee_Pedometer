@@ -1,7 +1,7 @@
 package com.gionee.www.pedometer.constants;
 
 /**
- * Created by weiqun on 2016/3/28 0028.
+ * Created by weiqun on 2016/3/28 0028. 
  */
 public class Constants {
     public static final int STEP_INFO = 0x9001;
