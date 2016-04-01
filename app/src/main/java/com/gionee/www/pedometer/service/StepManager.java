@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.os.Message;
 
@@ -131,4 +132,19 @@ public class StepManager {
         StepInfo stepInfo = new StepInfo();
         updateView(stepInfo);
     }
+
+    public void clearDatas() {
+        if(!isNeedClearDatas()){
+            return;
+        }
+        clearData(mContext);
+    }
+
+    private boolean isNeedClearDatas() {
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences(Constants.PREFERENCE_NAME, Context.MODE_PRIVATE);
+        long nexttime = sharedPreferences.getLong(Constants.CLEARDATA_NEXTTIME,0l);
+        long currenttime = System.currentTimeMillis();
+        return ((currenttime - nexttime)>0? true:false);
+    }
+
 }

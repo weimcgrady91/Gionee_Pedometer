@@ -28,6 +28,12 @@
             android:process=":guard" />
 
         <activity android:name=".view.SettingActivity"></activity>
+
+        <receiver android:name=".service.ClearDataReceiver">
+            <intent-filter>
+                <action android:name="com.gionee.www.pedometer.cleardata"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

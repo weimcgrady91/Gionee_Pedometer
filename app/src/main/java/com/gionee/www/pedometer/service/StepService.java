@@ -17,6 +17,7 @@ import android.util.Log;
 import com.gionee.www.pedometer.R;
 import com.gionee.www.pedometer.bean.StepInfo;
 import com.gionee.www.pedometer.constants.Constants;
+import com.gionee.www.pedometer.dao.SaveTimeDao;
 import com.gionee.www.pedometer.util.LogUtil;
 import com.gionee.www.pedometer.view.StepActivity;
 
@@ -73,11 +74,33 @@ public class StepService extends Service implements StepDetector.StepDetectorLis
         registerSensor();
         setForeground();
         registerGuardReceiver();
+
+        clearDatas();
+        saveNextClearDataTime();
+        startAlarm();
+    }
+
+    private void saveNextClearDataTime() {
+        long nextTime = System.currentTimeMillis() + PedometerAlarm.getLeftTime();
+        SaveTimeDao.saveNextClearDataTime(this,nextTime);
+    }
+
+    private void clearDatas() {
+        if(mStepManager != null){
+            mStepManager.clearDatas();
+        }
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         return Service.START_STICKY;
+    }
+
+    /**
+     * 开启数据清理 计时器
+     */
+    private void startAlarm() {
+        PedometerAlarm.startAlarm(this, PedometerAlarm.getLeftTime());
     }
 
 
