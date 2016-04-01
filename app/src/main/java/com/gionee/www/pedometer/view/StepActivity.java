@@ -4,8 +4,12 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.gionee.www.pedometer.R;
@@ -40,9 +44,11 @@ public class StepActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        mStepCount = (TextView) findViewById(R.id.tv_stepCount);
-        mStepDistance = (TextView) findViewById(R.id.tv_stepDistance);
-        mStepCal = (TextView) findViewById(R.id.tv_stepCal);
+        FrameLayout mainContainer = (FrameLayout)findViewById(R.id.frame_content);
+        View contentView = LayoutInflater.from(this).inflate(R.layout.main_content,mainContainer);
+        mStepCount = (TextView) contentView.findViewById(R.id.tv_stepCount);
+        mStepDistance = (TextView) contentView.findViewById(R.id.tv_stepDistance);
+        mStepCal = (TextView) contentView.findViewById(R.id.tv_stepCal);
     }
 
     /**
@@ -95,11 +101,11 @@ public class StepActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.step_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.step_menu, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

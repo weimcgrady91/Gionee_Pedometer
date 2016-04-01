@@ -111,7 +111,7 @@ public class StepDetector implements SensorEventListener {
                                 }
 
                                 if (lastOneStepEndTime != 0) {
-                                    if (mCurrentThreshold == sThreshold && (currentStepStartTime - lastOneStepEndTime) / 1000 >= 1) {
+                                    if (mCurrentThreshold == sThreshold && (currentStepStartTime - lastOneStepEndTime) / 1500 >= 1) {
                                         mCurrentThreshold = 0;
                                         bThresholdFlag = false;
                                     }
