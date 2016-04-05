@@ -19,4 +19,6 @@ public class Constants {
     public static final String PROPERTIES_PERSON_HEIGHT = "PERSON_HEIGHT";
     public static final String PROPERTIES_PERSON_WIDGET = "PERSON_WIDGET";
     public static final String PROPERTIES_PERSON_STEP_LENGTH = "PROPERTIES_PERSON_STEP_LENGTH";
+
+   public static final String CLEARDATA_NEXTTIME = "CLEARDATA_NEXTTIME";
 }
